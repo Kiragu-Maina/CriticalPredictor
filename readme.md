@@ -54,3 +54,34 @@ To test the model, modify the values of load, tilt, and distance in the `testthe
    ```bash
    python testthemodel.py
 
+
+# MQTT-Based Sensor Monitoring System
+
+This project monitors simulated sensor data using an MQTT broker. Sensor data is published to MQTT topics, and actions such as sending SMS notifications or activating alarms can be triggered based on model predictions.
+
+## Features
+
+- **Sensor Data Publishing**: Publishes simulated sensor data (load sensor, tilt sensor, and ultrasonic distance) to an MQTT topic.
+- **Alert System**: Processes sensor data using a pre-trained machine learning model and publishes alerts to an MQTT topic when an abnormal condition is detected.
+- **Subscriber Actions**: Listens for MQTT messages to trigger actions like sounding an alarm or sending SMS notifications.
+
+## Requirements
+
+- Python 3.x
+- MQTT broker (e.g., [Mosquitto](https://mosquitto.org/))
+- Python packages:
+  - `paho-mqtt`
+  - `joblib`
+  - `numpy`
+  
+
+
+```bash
+Follow the "Getting Started" instructions upto step 3
+```
+
+Run the simulation 
+
+```bash
+python raspberrycode2.py
+```
