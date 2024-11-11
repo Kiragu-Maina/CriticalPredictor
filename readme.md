@@ -85,3 +85,102 @@ Run the simulation
 ```bash
 python raspberrycode2.py
 ```
+Here’s a `README.md` file that provides instructions on how to set up and run the Django application API and dashboard:
+
+---
+
+# Django Application API and Dashboard
+
+This project contains a Django application with an API and a dashboard to process sensor data, make predictions using a pre-trained TensorFlow Lite model, and display the results.
+
+## Setup Instructions
+
+Follow these steps to set up the project, run the application, and view the dashboard.
+
+### 1. Create and Activate a Virtual Environment
+
+First, create and activate a virtual environment to manage the dependencies:
+
+#### For Linux/MacOS:
+```bash
+python3 -m venv env
+source env/bin/activate
+```
+
+#### For Windows:
+```bash
+python -m venv env
+.\env\Scripts\activate
+```
+
+### 2. Install Dependencies
+
+Install the required dependencies listed in the `requirements.txt` file:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Set Up the Database
+
+Change to the `listener` directory where the Django application resides, and apply the migrations to set up the database:
+
+```bash
+cd listener
+python manage.py migrate
+```
+
+### 4. Add Data to the Database
+
+To add the sensor testing data to the database (this may take a while depending on the size of the data), run the following script:
+
+```bash
+cd ..
+python posttestingdata_to_django.py
+```
+
+This will populate your database with synthetic sensor data for testing purposes.
+
+### 5. Run the Django Development Server
+
+Change back to the `listener` directory and start the Django development server:
+
+```bash
+cd listener
+python manage.py runserver
+```
+
+### 6. Access the Dashboard
+
+Once the server is running, go to the dashboard by visiting the following URL in your browser:
+
+```
+http://localhost:8000/home/dashboard
+```
+
+### 7. Make Predictions
+
+On the dashboard, you will be prompted to enter a **start date** and an **end date**. Input the desired date range, and the system will use the pre-trained model to make predictions based on the sensor data within that time frame.
+
+- **Start Date**: Enter the starting date for the prediction (in `YYYY-MM-DD` format).
+- **End Date**: Enter the ending date for the prediction (in `YYYY-MM-DD` format).
+
+The dashboard will display whether the conditions during the selected time range are **"Normal"** or **"Critical"** based on the sensor data and the model’s prediction.
+
+---
+
+## Troubleshooting
+
+### Date Format Error
+
+If you enter the date in an incorrect format, you will be prompted to enter it again in the `YYYY-MM-DD` format.
+
+### Runtime Errors
+
+If you encounter a `FileNotFoundError` or similar errors when loading the model, make sure that the `my_model.tflite` file is correctly placed in the appropriate directory and accessible.
+
+---
+
+
+
+
